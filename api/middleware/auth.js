@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../resources/users/user.model');
+const User = require('../resources/user/user.model');
 
 exports.protect = async(req,res,next)=>{
     let token;
@@ -19,7 +19,7 @@ exports.protect = async(req,res,next)=>{
 
         console.log(decoded);
 
-        req.user = await User.findById(decoded.id);
+        req.user = await User.findOne({where: {id:decoded.id}});
 
         next();
     } catch (error) {

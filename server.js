@@ -1,7 +1,7 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config({path : __dirname +'/.env'});
 const bodyParser = require('body-parser');
-const connect = require('./config/db');
+const { db } = require('./config/db');
 const restRouter = require('./api/index');
 const cookieParser = require('cookie-parser');
 const mongoSanitizer = require('express-mongo-sanitize');
@@ -12,11 +12,6 @@ const hpp = require('hpp');
 const cors = require('cors');
 //const configJWTStrategy = require('./api/middleware/passport');
 const logger = require('./api/middleware/logger');
-
-//load environment variables
-dotenv.config({path : '/.env'});
-
-connect();
 
 const app = express();
 

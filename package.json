@@ -4,7 +4,8 @@
   "description": "Uniben campus news backend",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node server",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,8 @@
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "process": "^0.11.10",
     "resize-image": "^0.1.0",
     "sequelize": "^6.4.0",
