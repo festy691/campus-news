@@ -103,6 +103,31 @@ module.exports = {
         }
     },
     
+    async updatePic(req,res){
+        try {
+            let data = req.body;
+            let existingUser = await UserModel.findOne({where: {id: req.params.id}});
+
+            if (!existingUser) return res.status(404).send({"error":'User not found'});
+
+            if (!data.image) return res.status(400).send({"error":'Emage cannot be null'});
+
+            const image = data.image;
+            let user = {};
+
+            if (image) existingUser.image = image;
+
+            try {
+                await existingUser.save({validateBeforeSave:false});
+                return res.status(201).send({"success":"Profile picture updated"});
+            } catch (error) {
+                return res.status(400).send({"error":error});
+            }
+        } catch (err) {
+            return res.status(400).send({"error":err});
+        }
+    },
+    
     async getSingleUser(req,res){
         try {
             let user = await UserModel.findOne({where: {id: req.params.id},attributes: { exclude: ['password','verificationCode','verificationExpire','resetPasswordToken','resetPassordExpire'] }});

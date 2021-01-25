@@ -16,6 +16,9 @@ userRouter.route('/:id')
 .put(protect, userController.updateUser)
 .get(protect, userController.getSingleUser);
 
+userRouter.route('/profilepics/:id')
+.put(protect, userController.updatePic);
+
 userRouter.route('/login')
 .post(userController.loginUser);
 

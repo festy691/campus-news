@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
-let UserModel = require('../api/resources/user/user.model')
+let UserModel = require('../api/resources/user/user.model');
+let ImageModel = require('../api/resources/image/image.model');
 
 let db = new Sequelize('campus-news', 'postgres', 'root', {
         host: 'localhost',
@@ -15,9 +16,12 @@ try {
 }
 
 let user = UserModel( db );
+let image = ImageModel ( db );
 
 user.sync();
+image.sync();
 
 module.exports = {
     UserModel : user,
+    ImageModel : image,
 };
